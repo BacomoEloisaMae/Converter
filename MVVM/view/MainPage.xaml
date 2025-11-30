@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Converter.MVVM.ViewModels"
+             x:Class="Converter.MVVM.Views.MainPage"
+             Title="Unit Converter">
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- RESULT -->
+            <Frame Padding="15"
+                   CornerRadius="15"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                <VerticalStackLayout>
+                    <Label Text="Result"
+                           FontSize="20"
+                           TextColor="#444"
+                           HorizontalOptions="Center" />
+                    <Label Text="{Binding ResultValue}"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="#000"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- INPUT -->
+            <Frame Padding="15"
+                   CornerRadius="15"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                <Entry Placeholder="Enter value"
+                       Keyboard="Numeric"
+                       Text="{Binding InputValue, Mode=TwoWay}"
+                       BackgroundColor="Black"
+                       HeightRequest="45" />
+            </Frame>
+            <!-- PICKERS AND CONVERT BUTTON -->
+            <Frame Padding="15"
+       CornerRadius="15"
+       BackgroundColor="Black"
+       HasShadow="True">
+                <VerticalStackLayout Spacing="15">
+
+                    <Picker Title="From Unit"
+                ItemsSource="{Binding Units}"
+                SelectedItem="{Binding FromUnit}" />
+
+                    <Picker Title="To Unit"
+                ItemsSource="{Binding Units}"
+                SelectedItem="{Binding ToUnit}" />
+
+
+                    <Button Text="Convert"
+                Command="{Binding ConvertCommand}"
+                BackgroundColor="#2196F3"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="45" />
+                </VerticalStackLayout>
+            </Frame>
+            <!-- IMAGE BUTTONS GRID -->
+            <Frame Padding="15"
+                   CornerRadius="15"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                <Grid RowSpacing="10" ColumnSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Row 0 -->
+                    <Frame Grid.Row="0" Grid.Column="0" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
+                        <ImageButton Source="length.png"
+                         Command="{Binding CategoryCommand}"
+                         CommandParameter="Length"
+                         HeightRequest="80" WidthRequest="80" />
+                    </Frame>
+                    <Frame Grid.Row="0" Grid.Column="1" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
+                        <ImageButton Source="mass.png"
+                         Command="{Binding CategoryCommand}"
+                         CommandParameter="Mass"
+                         HeightRequest="80" WidthRequest="80" />
+                    </Frame>
+                    <Frame Grid.Row="0" Grid.Column="2" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
+                        <ImageButton Source="temperature.png"
+                         Command="{Binding CategoryCommand}"
+                         CommandParameter="Temperature"
+                         HeightRequest="80" WidthRequest="80" />
+                    </Frame>
+
+                    <!-- Row 1 -->
+                    <Frame Grid.Row="1" Grid.Column="0" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
+                        <ImageButton Source="current.png"
+                         Command="{Binding CategoryCommand}"
+                         CommandParameter="Current"
+                         HeightRequest="80" WidthRequest="80" />
+                    </Frame>
+                    <Frame Grid.Row="1" Grid.Column="1" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
+                        <ImageButton Source="area.png"
+                         Command="{Binding CategoryCommand}"
+                         CommandParameter="Area"
+                         HeightRequest="80" WidthRequest="80" />
+                    </Frame>
+                    <Frame Grid.Row="1" Grid.Column="2" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
+                        <ImageButton Source="volume.png"
+                         Command="{Binding CategoryCommand}"
+                         CommandParameter="Volume"
+                         HeightRequest="80" WidthRequest="80" />
+                    </Frame>
+
+                    <!-- Row 2 -->
+                    <Frame Grid.Row="2" Grid.Column="1" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
+                        <ImageButton Source="light.png"
+                         Command="{Binding CategoryCommand}"
+                         CommandParameter="Intensity"
+                         HeightRequest="80" WidthRequest="80" />
+                    </Frame>
+                </Grid>
+            </Frame>
+
+
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
