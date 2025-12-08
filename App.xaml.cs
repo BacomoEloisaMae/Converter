@@ -1,4 +1,4 @@
-﻿using Converter.MVVM.Views;
+﻿using Converter.MVVM.View;
 
 namespace Converter
 {
@@ -7,11 +7,12 @@ namespace Converter
         public App()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(ResultPage), typeof(ResultPage));  
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new MainPage());
+            return new Window(new AppShell());
         }
     }
 }

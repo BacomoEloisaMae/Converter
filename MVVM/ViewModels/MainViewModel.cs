@@ -1,127 +1,94 @@
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Converter.MVVM.Models;
 
 namespace Converter.MVVM.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string n = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(n));
+        private string category;
+        public string Category
+        {
+            get => category;
+            set { category = value; OnPropertyChanged(); }
+        }
 
-        public ObservableCollection<string> Units { get; private set; } = new ObservableCollection<string>();
-
-        private string selectedCategory;
-        private string fromUnit;
-        private string toUnit;
         private double inputValue;
-        private double resultValue;
-
-        public string SelectedCategory
-        {
-            get => selectedCategory;
-            set
-            {
-                selectedCategory = value;
-                OnPropertyChanged();
-                LoadUnits(); // update dropdown
-            }
-        }
-
-        public string FromUnit
-        {
-            get => fromUnit;
-            set { fromUnit = value; OnPropertyChanged(); }
-        }
-
-        public string ToUnit
-        {
-            get => toUnit;
-            set { toUnit = value; OnPropertyChanged(); }
-        }
-
         public double InputValue
         {
             get => inputValue;
             set { inputValue = value; OnPropertyChanged(); }
         }
 
-        public double ResultValue
+        private string selectedFrom;
+        public string SelectedFrom
         {
-            get => resultValue;
-            set { resultValue = value; OnPropertyChanged(); }
+            get => selectedFrom;
+            set { selectedFrom = value; OnPropertyChanged(); }
         }
 
-        // COMMANDS
-        public ICommand CategoryCommand { get; }
+        private string selectedTo;
+        public string SelectedTo
+        {
+            get => selectedTo;
+            set { selectedTo = value; OnPropertyChanged(); }
+        }
+
+        private double result;
+        public double Result
+        {
+            get => result;
+            set { result = value; OnPropertyChanged(); }
+        }
+
+        public ObservableCollection<string> Units { get; set; } = new();
+
+        public ICommand SelectCategoryCommand { get; }
         public ICommand ConvertCommand { get; }
 
         public MainViewModel()
         {
-            CategoryCommand = new Command<string>((category) =>
-            {
-                SelectedCategory = category;
-            });
-
-            ConvertCommand = new Command(() =>
-            {
-                if (string.IsNullOrEmpty(FromUnit) || string.IsNullOrEmpty(ToUnit)) return;
-                ResultValue = UnitConverter.Convert(SelectedCategory, InputValue, FromUnit, ToUnit);
-            });
+            SelectCategoryCommand = new Command<string>(OnCategorySelected);
+            ConvertCommand = new Command(ConvertValue);
         }
 
-        // Load Units for the selected category
-        private void LoadUnits()
+        private async void OnCategorySelected(string category)
         {
-            Units.Clear();
+            Category = category;
 
-            switch (SelectedCategory)
+            Units.Clear();
+            var newUnits = category switch
             {
-                case "Length":
-                    Units.Add("Meters");
-                    Units.Add("Centimeters");
-                    Units.Add("Kilometers");
-                    Units.Add("Inches");
-                    Units.Add("Feet");
-                    break;
-                case "Mass":
-                    Units.Add("Kilograms");
-                    Units.Add("Grams");
-                    Units.Add("Pounds");
-                    Units.Add("Ounces");
-                    break;
-                case "Temperature":
-                    Units.Add("Celsius");
-                    Units.Add("Fahrenheit");
-                    Units.Add("Kelvin");
-                    break;
-                case "Area":
-                    Units.Add("Square Meters");
-                    Units.Add("Square Centimeters");
-                    Units.Add("Square Kilometers");
-                    Units.Add("Acres");
-                    break;
-                case "Volume":
-                    Units.Add("Liters");
-                    Units.Add("Milliliters");
-                    Units.Add("Cubic Meters");
-                    Units.Add("Gallons");
-                    break;
-                case "Current":
-                    Units.Add("Amperes");
-                    Units.Add("Milliamperes");
-                    break;
-                case "Intensity":
-                    Units.Add("Candela");
-                    break;
+                "Length" => new[] { "Meter", "Centimeter", "Kilometer", "Millimeter" },
+                "Mass" => new[] { "Gram", "Kilogram", "Pound" },
+                "Area" => new[] { "SquareMeter", "SquareKilometer", "SquareCentimeter" },
+                "Volume" => new[] { "Liter", "Milliliter", "CubicMeter" },
+                "Temperature" => new[] { "DegreeCelsius", "DegreeFahrenheit", "Kelvin" },
+                _ => Array.Empty<string>()
+            };
+
+            foreach (var unit in newUnits)
+                Units.Add(unit);
+
+            if (Units.Any())
+            {
+                SelectedFrom = Units.First();
+                SelectedTo = Units.Last();
             }
 
-            // Set default selected units
-            FromUnit = Units.Count > 0 ? Units[0] : null;
-            ToUnit = Units.Count > 1 ? Units[1] : Units.Count > 0 ? Units[0] : null;
+            await Shell.Current.GoToAsync($"ResultPage?category={Category}");
+        }
+
+
+
+        private void ConvertValue()
+        {
+            if (string.IsNullOrWhiteSpace(Category) ||
+                string.IsNullOrWhiteSpace(SelectedFrom) ||
+                string.IsNullOrWhiteSpace(SelectedTo))
+                return;
+
+            Result = UnitConverter.Convert(Category, InputValue, SelectedFrom, SelectedTo);
         }
     }
 }

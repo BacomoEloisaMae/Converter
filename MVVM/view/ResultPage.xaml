@@ -1,0 +1,48 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:Converter.MVVM.ViewModels"
+    Shell.NavBarIsVisible="False"
+    x:Class="Converter.MVVM.View.ResultPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <!-- Root Grid to host background and content -->
+    <Grid>
+        <!-- Background Image -->
+        <Image Source="result.png"
+               Aspect="AspectFill"
+               Opacity="1"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill" />
+
+        <!-- Foreground Content -->
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Entry Placeholder="Enter value"
+                   FontSize="30"
+                   Margin="0, 20, 0, 0"
+                   Keyboard="Numeric"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"
+                   Text="{Binding InputValue, Mode=TwoWay}" />
+
+            <Picker Title="From"
+                    ItemsSource="{Binding Units}"
+                    SelectedItem="{Binding SelectedFrom}" />
+
+            <Picker Title="To"
+                    ItemsSource="{Binding Units}"
+                    Margin="0, 20, 0, 0"
+                    SelectedItem="{Binding SelectedTo}" />
+
+            <Button Text="Convert"
+                    Command="{Binding ConvertCommand}" />
+
+            <Label Text="{Binding Result, StringFormat='{}{0:N2}'}"
+                   FontSize="38"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

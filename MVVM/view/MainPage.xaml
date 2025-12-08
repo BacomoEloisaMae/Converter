@@ -1,141 +1,220 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:Converter.MVVM.ViewModels"
-             x:Class="Converter.MVVM.Views.MainPage"
-             Title="Unit Converter">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:Converter.MVVM.ViewModels"
+    Shell.NavBarIsVisible="False"
+    x:Class="Converter.MVVM.View.MainPage">
 
     <ContentPage.BindingContext>
-        <viewmodels:MainViewModel />
+        <viewmodels:MainViewModel/>
     </ContentPage.BindingContext>
 
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
+    <Grid>
+        <!-- Background image -->
+        <Image Source="bg.png"
+               Aspect="AspectFill"
+               Opacity="1"
+               InputTransparent="True"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill" />
 
-            <!-- RESULT -->
-            <Frame Padding="15"
-                   CornerRadius="15"
-                   BackgroundColor="White"
-                   HasShadow="True">
-                <VerticalStackLayout>
-                    <Label Text="Result"
-                           FontSize="20"
-                           TextColor="#444"
-                           HorizontalOptions="Center" />
-                    <Label Text="{Binding ResultValue}"
-                           FontSize="28"
-                           FontAttributes="Bold"
-                           TextColor="#000"
-                           HorizontalOptions="Center" />
-                </VerticalStackLayout>
-            </Frame>
+        <VerticalStackLayout Spacing="30" Padding="30">
 
-            <!-- INPUT -->
-            <Frame Padding="15"
-                   CornerRadius="15"
-                   BackgroundColor="White"
-                   HasShadow="True">
-                <Entry Placeholder="Enter value"
-                       Keyboard="Numeric"
-                       Text="{Binding InputValue, Mode=TwoWay}"
-                       BackgroundColor="Black"
-                       HeightRequest="45" />
-            </Frame>
-            <!-- PICKERS AND CONVERT BUTTON -->
-            <Frame Padding="15"
-       CornerRadius="15"
-       BackgroundColor="Black"
-       HasShadow="True">
-                <VerticalStackLayout Spacing="15">
+            <Label Text="Mauiverter"
+                   FontFamily="MyFont"
+                   FontSize="44"
+                   HorizontalOptions="Center"
+                   Margin="0, 60, 0, 0"
+                   TextColor="#6501D4"/>
 
-                    <Picker Title="From Unit"
-                ItemsSource="{Binding Units}"
-                SelectedItem="{Binding FromUnit}" />
+            <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto"
+                  ColumnSpacing="10" RowSpacing="10">
 
-                    <Picker Title="To Unit"
-                ItemsSource="{Binding Units}"
-                SelectedItem="{Binding ToUnit}" />
+                <!-- Row 0 -->
+                <Border StrokeThickness="3" Padding="3">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="information.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Information"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
 
+                <Border StrokeThickness="3" Padding="3" Grid.Column="1">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="volume.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Volume"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
 
-                    <Button Text="Convert"
-                Command="{Binding ConvertCommand}"
-                BackgroundColor="#2196F3"
-                TextColor="White"
-                CornerRadius="10"
-                HeightRequest="45" />
-                </VerticalStackLayout>
-            </Frame>
-            <!-- IMAGE BUTTONS GRID -->
-            <Frame Padding="15"
-                   CornerRadius="15"
-                   BackgroundColor="White"
-                   HasShadow="True">
-                <Grid RowSpacing="10" ColumnSpacing="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <Border StrokeThickness="3" Padding="3" Grid.Column="2">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="length.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Length"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
 
-                    <!-- Row 0 -->
-                    <Frame Grid.Row="0" Grid.Column="0" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
-                        <ImageButton Source="length.png"
-                         Command="{Binding CategoryCommand}"
-                         CommandParameter="Length"
-                         HeightRequest="80" WidthRequest="80" />
-                    </Frame>
-                    <Frame Grid.Row="0" Grid.Column="1" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
-                        <ImageButton Source="mass.png"
-                         Command="{Binding CategoryCommand}"
-                         CommandParameter="Mass"
-                         HeightRequest="80" WidthRequest="80" />
-                    </Frame>
-                    <Frame Grid.Row="0" Grid.Column="2" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
-                        <ImageButton Source="temperature.png"
-                         Command="{Binding CategoryCommand}"
-                         CommandParameter="Temperature"
-                         HeightRequest="80" WidthRequest="80" />
-                    </Frame>
+                <!-- Row 1 -->
+                <Border StrokeThickness="3" Padding="3" Grid.Row="1" Grid.Column="0">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="mass.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Mass"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
 
-                    <!-- Row 1 -->
-                    <Frame Grid.Row="1" Grid.Column="0" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
-                        <ImageButton Source="current.png"
-                         Command="{Binding CategoryCommand}"
-                         CommandParameter="Current"
-                         HeightRequest="80" WidthRequest="80" />
-                    </Frame>
-                    <Frame Grid.Row="1" Grid.Column="1" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
-                        <ImageButton Source="area.png"
-                         Command="{Binding CategoryCommand}"
-                         CommandParameter="Area"
-                         HeightRequest="80" WidthRequest="80" />
-                    </Frame>
-                    <Frame Grid.Row="1" Grid.Column="2" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
-                        <ImageButton Source="volume.png"
-                         Command="{Binding CategoryCommand}"
-                         CommandParameter="Volume"
-                         HeightRequest="80" WidthRequest="80" />
-                    </Frame>
+                <Border StrokeThickness="3" Padding="3" Grid.Row="1" Grid.Column="1">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="temperature.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Temperature"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
 
-                    <!-- Row 2 -->
-                    <Frame Grid.Row="2" Grid.Column="1" Padding="5" CornerRadius="10" BorderColor="Gray" BackgroundColor="White">
-                        <ImageButton Source="light.png"
-                         Command="{Binding CategoryCommand}"
-                         CommandParameter="Intensity"
-                         HeightRequest="80" WidthRequest="80" />
-                    </Frame>
-                </Grid>
-            </Frame>
+                <Border StrokeThickness="3" Padding="3" Grid.Row="1" Grid.Column="2">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="energy.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Energy"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
 
+                <!-- Row 2 -->
+                <Border StrokeThickness="3" Padding="3" Grid.Row="2" Grid.Column="0">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="area.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Area"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
 
-            
+                <Border StrokeThickness="3" Padding="3" Grid.Row="2" Grid.Column="1">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="speed.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Speed"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
 
+                <Border StrokeThickness="3" Padding="3" Grid.Row="2" Grid.Column="2">
+                    <Border.Stroke>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#6501D4" Offset="0.0"/>
+                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Stroke>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20"/>
+                    </Border.StrokeShape>
+                    <Border.Content>
+                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+                            <ImageButton Source="duration.png"
+                                         Command="{Binding SelectCategoryCommand}"
+                                         CommandParameter="Duration"
+                                         Aspect="AspectFit"/>
+                        </Frame>
+                    </Border.Content>
+                </Border>
+
+            </Grid>
         </VerticalStackLayout>
-    </ScrollView>
 
+    </Grid>
 </ContentPage>

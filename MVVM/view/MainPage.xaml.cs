@@ -1,6 +1,6 @@
 using Converter.MVVM.ViewModels;
 
-namespace Converter.MVVM.Views
+namespace Converter.MVVM.View
 {
     public partial class MainPage : ContentPage
     {
