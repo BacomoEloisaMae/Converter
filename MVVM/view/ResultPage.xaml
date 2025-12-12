@@ -11,38 +11,55 @@
 
     <!-- Root Grid to host background and content -->
     <Grid>
-        <!-- Background Image -->
+        
+          <!-- Background Image -->
         <Image Source="result.png"
                Aspect="AspectFill"
                Opacity="1"
                HorizontalOptions="Fill"
                VerticalOptions="Fill" />
-
+        
+        <!-- Title -->
+        <Label Text="Mauiverter"
+               FontFamily="MyFont"
+               FontSize="44"
+               HorizontalOptions="Center"
+               Margin="0, 30, 0, 0"
+               TextColor="#6501D4"/>
         <!-- Foreground Content -->
-        <VerticalStackLayout Padding="20" Spacing="20">
+        <Frame BackgroundColor="Black"  Opacity="0.8" HeightRequest="500" WidthRequest="350" >
+            <VerticalStackLayout Padding="20" Spacing="20">
             <Entry Placeholder="Enter value"
-                   FontSize="30"
-                   Margin="0, 20, 0, 0"
-                   Keyboard="Numeric"
-                   HorizontalOptions="FillAndExpand"
-                   HorizontalTextAlignment="Center"
-                   Text="{Binding InputValue, Mode=TwoWay}" />
+                       FontSize="30"
+                       Keyboard="Numeric"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       Text="{Binding InputValue, Mode=TwoWay}" />
 
             <Picker Title="From"
-                    ItemsSource="{Binding Units}"
-                    SelectedItem="{Binding SelectedFrom}" />
+                    
+                        TitleColor="White"
+                        ItemsSource="{Binding Units}"
+                        SelectedItem="{Binding SelectedFrom}" />
 
             <Picker Title="To"
-                    ItemsSource="{Binding Units}"
-                    Margin="0, 20, 0, 0"
-                    SelectedItem="{Binding SelectedTo}" />
+                        TitleColor="White"
+                        ItemsSource="{Binding Units}"
+                        Margin="0, 20, 0, 0"
+                        SelectedItem="{Binding SelectedTo}" />
 
             <Button Text="Convert"
-                    Command="{Binding ConvertCommand}" />
+                    Margin="0, 40, 0, 0"
+                        Command="{Binding ConvertCommand}" />
 
             <Label Text="{Binding Result, StringFormat='{}{0:N2}'}"
-                   FontSize="38"
-                   HorizontalOptions="Center" />
+                       FontSize="38"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
         </VerticalStackLayout>
+            
+            
+        </Frame>
+        
     </Grid>
 </ContentPage>
