@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Converter.MVVM.Models;
 
@@ -13,8 +13,8 @@ namespace Converter.MVVM.ViewModels
             set { category = value; OnPropertyChanged(); }
         }
 
-        private double inputValue;
-        public double InputValue
+        private string inputValue;
+        public string InputValue
         {
             get => inputValue;
             set { inputValue = value; OnPropertyChanged(); }
@@ -41,54 +41,60 @@ namespace Converter.MVVM.ViewModels
             set { result = value; OnPropertyChanged(); }
         }
 
-        public ObservableCollection<string> Units { get; set; } = new();
+        public ObservableCollection<string> Units { get; } = new();
 
         public ICommand SelectCategoryCommand { get; }
         public ICommand ConvertCommand { get; }
 
         public MainViewModel()
         {
-            SelectCategoryCommand = new Command<string>(OnCategorySelected);
+            SelectCategoryCommand = new Command<string>(async category =>
+            {
+                await Shell.Current.GoToAsync($"ResultPage?category={category}");
+            });
+
             ConvertCommand = new Command(ConvertValue);
         }
 
-        private async void OnCategorySelected(string category)
+        public void LoadUnits(string category)
         {
             Category = category;
-
             Units.Clear();
-            var newUnits = category switch
+
+            string[] newUnits = category switch
             {
                 "Length" => new[] { "Meter", "Centimeter", "Kilometer", "Millimeter" },
-                "Mass" => new[] { "Gram", "Kilogram", "Pound" },
-                "Area" => new[] { "SquareMeter", "SquareKilometer", "SquareCentimeter" },
-                "Volume" => new[] { "Liter", "Milliliter", "CubicMeter" },
-                "Temperature" => new[] { "DegreeCelsius", "DegreeFahrenheit", "Kelvin" },
+                "Mass" => new[] { "Gram", "Kilogram", "Milligram", "Pound" },
+                "Area" => new[] { "SquareMeter", "SquareKilometer", "SquareCentimeter", "Hectare" },
+                "Volume" => new[] { "Liter", "Milliliter", "CubicMeter", "CubicCentimeter" },
+                "Temperature" => new[] { "DegreeCelsius", "DegreeFahrenheit", "Kelvin", "DegreeRankine" },
+                "Information" => new[] { "Byte", "Kilobyte", "Megabyte", "Gigabyte" },
+                "Energy" => new[] { "Joule", "Kilojoule", "Calorie", "KilowattHour" },
+                "Speed" => new[] { "MeterPerSecond", "KilometerPerHour", "MilePerHour", "FootPerSecond" },
+                "Duration" => new[] { "Second", "Minute", "Hour", "Day" },
                 _ => Array.Empty<string>()
             };
 
             foreach (var unit in newUnits)
                 Units.Add(unit);
 
-            if (Units.Any())
-            {
-                SelectedFrom = Units.First();
-                SelectedTo = Units.Last();
-            }
-
-            await Shell.Current.GoToAsync($"ResultPage?category={Category}");
+            SelectedFrom = Units.FirstOrDefault();
+            SelectedTo = Units.LastOrDefault();
         }
-
-
 
         private void ConvertValue()
         {
-            if (string.IsNullOrWhiteSpace(Category) ||
-                string.IsNullOrWhiteSpace(SelectedFrom) ||
-                string.IsNullOrWhiteSpace(SelectedTo))
+            if (!double.TryParse(InputValue, out double value))
                 return;
 
-            Result = UnitConverter.Convert(Category, InputValue, SelectedFrom, SelectedTo);
+            try
+            {
+                Result = UnitConverter.Convert(Category, value, SelectedFrom, SelectedTo);
+            }
+            catch (Exception ex)
+            {
+                Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
     }
 }

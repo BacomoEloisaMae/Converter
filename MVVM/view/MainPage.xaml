@@ -28,189 +28,243 @@
                    TextColor="#6501D4"/>
 
             <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto"
-                  ColumnSpacing="10" RowSpacing="10">
+      ColumnSpacing="15" RowSpacing="20">
 
-                <!-- Row 0 -->
+                <!-- ROW 0 -->
                 <Border StrokeThickness="3" Padding="3">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="information.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Information"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Information"
+                             HeightRequest="60"/>
+
+                            <Label Text="Information"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
                 <Border StrokeThickness="3" Padding="3" Grid.Column="1">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="volume.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Volume"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Volume"
+                             HeightRequest="60"/>
+
+                            <Label Text="Volume"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
                 <Border StrokeThickness="3" Padding="3" Grid.Column="2">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="length.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Length"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Length"
+                             HeightRequest="60"/>
+
+                            <Label Text="Length"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
-                <!-- Row 1 -->
-                <Border StrokeThickness="3" Padding="3" Grid.Row="1" Grid.Column="0">
+                <!-- ROW 1 -->
+                <Border StrokeThickness="3" Padding="3" Grid.Row="1">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="mass.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Mass"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Mass"
+                             HeightRequest="60"/>
+
+                            <Label Text="Mass"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
                 <Border StrokeThickness="3" Padding="3" Grid.Row="1" Grid.Column="1">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="temperature.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Temperature"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Temperature"
+                             HeightRequest="60"/>
+
+                            <Label Text="Temperature"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
                 <Border StrokeThickness="3" Padding="3" Grid.Row="1" Grid.Column="2">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="energy.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Energy"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Energy"
+                             HeightRequest="60"/>
+
+                            <Label Text="Energy"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
-                <!-- Row 2 -->
-                <Border StrokeThickness="3" Padding="3" Grid.Row="2" Grid.Column="0">
+                <!-- ROW 2 -->
+                <Border StrokeThickness="3" Padding="3" Grid.Row="2">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="area.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Area"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Area"
+                             HeightRequest="60"/>
+
+                            <Label Text="Area"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
                 <Border StrokeThickness="3" Padding="3" Grid.Row="2" Grid.Column="1">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="speed.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Speed"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Speed"
+                             HeightRequest="60"/>
+
+                            <Label Text="Speed"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
                 <Border StrokeThickness="3" Padding="3" Grid.Row="2" Grid.Column="2">
                     <Border.Stroke>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="#6501D4" Offset="0.0"/>
-                            <GradientStop Color="#FF00FE" Offset="1.0"/>
+                            <GradientStop Color="#6501D4" Offset="0"/>
+                            <GradientStop Color="#FF00FE" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Stroke>
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="20"/>
                     </Border.StrokeShape>
-                    <Border.Content>
-                        <Frame CornerRadius="15" Padding="10" BackgroundColor="White" HasShadow="True">
+
+                    <Frame CornerRadius="15" Padding="10" BackgroundColor="White">
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
                             <ImageButton Source="duration.png"
-                                         Command="{Binding SelectCategoryCommand}"
-                                         CommandParameter="Duration"
-                                         Aspect="AspectFit"/>
-                        </Frame>
-                    </Border.Content>
+                             Command="{Binding SelectCategoryCommand}"
+                             CommandParameter="Duration"
+                             HeightRequest="60"/>
+
+                            <Label Text="Duration"
+                       FontSize="14"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black"/>
+                        </VerticalStackLayout>
+                    </Frame>
                 </Border>
 
             </Grid>
